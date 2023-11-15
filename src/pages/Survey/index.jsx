@@ -17,7 +17,9 @@ function Survey() {
       <h1>Questionnaire 🧮</h1>
       <h2>Question {questionNumber}</h2>
       <Link to={previousQuestion(questionNumberInt)}>Précédent</Link>
-      <Link to={nextQuestion(questionNumberInt)}>Suivant</Link>
+      <Link to={nextQuestion(questionNumberInt)}>
+        {questionNumberInt === 10 ? 'Résultats' : 'Suivant'}
+      </Link>
     </div>
   )
 }
