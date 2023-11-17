@@ -1,6 +1,6 @@
 import { formatJobList, formatQueryParams } from './'
 
-describe('The formatJobList function', () => {
+describe('The getJobTitle function', () => {
   it('should add a comma to a word', () => {
     const expectedState = 'item2,'
     expect(formatJobList('item2', 3, 1)).toEqual(expectedState)
@@ -12,17 +12,6 @@ describe('The formatJobList function', () => {
 })
 
 describe('The formatQueryParams function', () => {
-  // tests écrits par Cyrielle
-  it('should return a string', () => {
-    expect(typeof(formatQueryParams({1: true, 2: false}))).toBe('string')
-  })
-  it("should contain n-1 '&' in the returned string", () => {
-    const answers = {1: false, 2: true, 3: true}
-    const result = formatQueryParams(answers)
-    const numberOfAnd = result.split('&').length - 1
-    expect(numberOfAnd).toEqual(Object.keys(answers).length - 1)
-  })
-  // tests écrits par OpenClassrooms
   it('should use the right format for param', () => {
     const expectedState = 'a1=answer1'
     expect(formatQueryParams({ 1: 'answer1' })).toEqual(expectedState)

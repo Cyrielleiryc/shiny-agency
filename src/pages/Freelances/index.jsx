@@ -1,6 +1,6 @@
 import Card from '../../components/Card'
 import styled from 'styled-components'
-// import colors from '../../utils/style/colors'
+import colors from '../../utils/style/colors'
 import { Loader } from '../../utils/style/Atoms'
 import { useFetch, useTheme } from '../../utils/hooks'
 
@@ -15,17 +15,18 @@ const CardsContainer = styled.div`
 
 const PageTitle = styled.h1`
   font-size: 30px;
-  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
   text-align: center;
   padding-bottom: 30px;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const PageSubtitle = styled.h2`
   font-size: 20px;
-  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
+  color: ${colors.secondary};
   font-weight: 300;
   text-align: center;
   padding-bottom: 30px;
+  color: ${({ theme }) => (theme === 'light' ? '#000000' : '#ffffff')};
 `
 
 const LoaderWrapper = styled.div`
@@ -35,11 +36,14 @@ const LoaderWrapper = styled.div`
 
 function Freelances() {
   const { theme } = useTheme()
-  const { data, isLoading, error } = useFetch(`http://localhost:8000/freelances`)
+  const { data, isLoading, error } = useFetch(
+    `http://localhost:8000/freelances`
+  )
+
   const freelancersList = data?.freelancersList
 
   if (error) {
-    return <span>Oups il y a eu un problème</span>
+    return <pre>{error}</pre>
   }
 
   return (
@@ -54,7 +58,7 @@ function Freelances() {
         </LoaderWrapper>
       ) : (
         <CardsContainer>
-          {freelancersList.map((profile, index) => (
+          {freelancersList?.map((profile, index) => (
             <Card
               key={`${profile.name}-${index}`}
               label={profile.job}

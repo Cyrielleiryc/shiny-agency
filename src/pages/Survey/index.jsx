@@ -77,7 +77,7 @@ function Survey() {
   const surveyData = data?.surveyData
 
   if (error) {
-    return <span>Oups il y a eu un problème</span>
+    return <pre>{error}</pre>
   }
 
   return (
@@ -87,7 +87,7 @@ function Survey() {
         <Loader />
       ) : (
         <QuestionContent theme={theme}>
-          {surveyData[questionNumber]}
+          {surveyData && surveyData[questionNumber]}
         </QuestionContent>
       )}
       <ReplyWrapper>
